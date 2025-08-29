@@ -8,35 +8,59 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Sleep App Color Palette - Magical Nighttime Theme */
+    --background: 240 20% 8%;
+    --foreground: 48 100% 88%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 240 25% 12%;
+    --card-foreground: 48 100% 88%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 240 25% 12%;
+    --popover-foreground: 48 100% 88%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 48 100% 75%;
+    --primary-foreground: 240 20% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 280 40% 65%;
+    --secondary-foreground: 48 100% 88%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 240 15% 20%;
+    --muted-foreground: 240 10% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 195 80% 70%;
+    --accent-foreground: 240 20% 8%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 48 100% 88%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 240 15% 25%;
+    --input: 240 15% 25%;
+    --ring: 48 100% 75%;
 
-    --radius: 0.5rem;
+    /* Magic Design Tokens */
+    --starlight: 48 100% 85%;
+    --moonbeam: 195 80% 85%;
+    --sleepy-purple: 280 40% 65%;
+    --forest-green: 160 40% 45%;
+    --cozy-amber: 35 100% 70%;
+    
+    /* Gradients */
+    --gradient-night: linear-gradient(135deg, hsl(240 25% 12%), hsl(240 20% 8%));
+    --gradient-starry: radial-gradient(circle at 30% 20%, hsl(48 100% 85% / 0.1), transparent 50%), 
+                       radial-gradient(circle at 70% 80%, hsl(195 80% 85% / 0.05), transparent 50%);
+    --gradient-moon: radial-gradient(circle at center, hsl(48 100% 85%), hsl(48 100% 75%));
+    --gradient-timer: linear-gradient(135deg, hsl(280 40% 65%), hsl(195 80% 70%));
+    
+    /* Shadows & Glows */
+    --shadow-magical: 0 0 40px hsl(48 100% 75% / 0.3);
+    --shadow-soft: 0 10px 30px hsl(240 20% 8% / 0.5);
+    --glow-gentle: 0 0 20px hsl(var(--primary) / 0.4);
+    
+    /* Animations */
+    --transition-dreamy: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-gentle: all 0.3s ease-out;
+
+    --radius: 1.5rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +80,26 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
+    /* Dark mode uses the same magical night theme */
+    --background: 240 20% 8%;
+    --foreground: 48 100% 88%;
+    --card: 240 25% 12%;
+    --card-foreground: 48 100% 88%;
+    --popover: 240 25% 12%;
+    --popover-foreground: 48 100% 88%;
+    --primary: 48 100% 75%;
+    --primary-foreground: 240 20% 8%;
+    --secondary: 280 40% 65%;
+    --secondary-foreground: 48 100% 88%;
+    --muted: 240 15% 20%;
+    --muted-foreground: 240 10% 60%;
+    --accent: 195 80% 70%;
+    --accent-foreground: 240 20% 8%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive-foreground: 48 100% 88%;
+    --border: 240 15% 25%;
+    --input: 240 15% 25%;
+    --ring: 48 100% 75%;
   }
 }
 
@@ -101,5 +110,106 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background: var(--gradient-night);
+    background-attachment: fixed;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  /* Custom animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes gentle-glow {
+    0%, 100% { box-shadow: var(--glow-gentle); }
+    50% { box-shadow: 0 0 30px hsl(var(--primary) / 0.6); }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+@layer components {
+  .starry-background {
+    background: var(--gradient-night), var(--gradient-starry);
+    position: relative;
+  }
+
+  .starry-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(2px 2px at 20px 30px, hsl(var(--starlight)), transparent),
+      radial-gradient(2px 2px at 40px 70px, hsl(var(--moonbeam)), transparent),
+      radial-gradient(1px 1px at 90px 40px, hsl(var(--starlight)), transparent),
+      radial-gradient(1px 1px at 130px 80px, hsl(var(--moonbeam)), transparent),
+      radial-gradient(2px 2px at 160px 30px, hsl(var(--starlight)), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+
+  .magic-button {
+    @apply rounded-full px-8 py-4 font-medium transition-all duration-300;
+    background: var(--gradient-moon);
+    color: hsl(var(--primary-foreground));
+    border: 2px solid hsl(var(--primary) / 0.3);
+    box-shadow: var(--shadow-magical);
+  }
+
+  .magic-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-magical), var(--shadow-soft);
+  }
+
+  .story-card {
+    @apply rounded-3xl overflow-hidden transition-all duration-500;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-soft);
+  }
+
+  .story-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-soft), var(--glow-gentle);
+  }
+
+  .timer-option {
+    @apply rounded-full px-6 py-3 text-center font-medium transition-all;
+    background: var(--gradient-timer);
+    color: hsl(var(--foreground));
+    border: 1px solid hsl(var(--border));
+  }
+
+  .timer-option:hover {
+    transform: scale(1.05);
+    box-shadow: var(--glow-gentle);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
   }
 }
