@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -7,6 +8,45 @@ interface ARViewProps {
 }
 
 const ARView = ({ isOpen, onClose }: ARViewProps) => {
+  useEffect(() => {
+    if (!isOpen) return;
+
+    // Cleanup function that runs when component unmounts or closes
+    return () => {
+      // Find the a-scene element
+      const sceneEl = document.querySelector('a-scene');
+      
+      // Stop the MindAR engine if it's running
+      if (sceneEl && (sceneEl as any).systems && (sceneEl as any).systems['mindar-image']) {
+        try {
+          (sceneEl as any).systems['mindar-image'].stop();
+        } catch (error) {
+          console.warn('Error stopping MindAR:', error);
+        }
+      }
+      
+      // Remove any leftover MindAR UI overlays
+      const mindarOverlays = document.querySelectorAll('.mindar-ui-overlay, .mindar-ui-loading, .mindar-ui-container');
+      mindarOverlays.forEach(overlay => {
+        if (overlay && overlay.parentNode) {
+          overlay.parentNode.removeChild(overlay);
+        }
+      });
+
+      // Also clean up any A-Frame related elements that might persist
+      const aframeElements = document.querySelectorAll('a-scene canvas, .a-enter-vr, .a-orientation-modal');
+      aframeElements.forEach(element => {
+        if (element && element.parentNode && element.parentNode !== document.body) {
+          try {
+            element.parentNode.removeChild(element);
+          } catch (error) {
+            console.warn('Error cleaning up A-Frame element:', error);
+          }
+        }
+      });
+    };
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
