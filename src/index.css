@@ -129,10 +129,10 @@ All colors MUST be HSL.
       transform: translate(10px, -15px) rotate(1deg);
     }
     50% { 
-      transform: translate(-5px, -10px) rotate(-0.5deg);
+      transform: translate(-10px, -15px) rotate(-1deg);
     }
     75% { 
-      transform: translate(-10px, -5px) rotate(0.5deg);
+      transform: translate(5px, -8px) rotate(0.5deg);
     }
     100% { 
       transform: translate(0, 0) rotate(0deg);
@@ -211,7 +211,7 @@ All colors MUST be HSL.
   }
 
   .floating-character {
-    animation: floating-drift linear infinite;
+    animation: floating-drift 6s ease-in-out infinite;
   }
 
   .timer-option {

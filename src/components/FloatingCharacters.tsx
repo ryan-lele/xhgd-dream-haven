@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import floatingFox from "../assets/floating-fox.png";
+import dreamGuardianBear from "../assets/dream-guardian-bear.png";
 import floatingElephant from "../assets/floating-elephant.png";
 import floatingBear from "../assets/floating-bear.png";
 import floatingRabbit from "../assets/floating-rabbit.png";
@@ -20,7 +20,7 @@ export const FloatingCharacters = () => {
 
   useEffect(() => {
     const characterImages = [
-      { id: "fox", image: floatingFox },
+      { id: "dream-guardian-bear", image: dreamGuardianBear },
       { id: "elephant", image: floatingElephant },
       { id: "bear", image: floatingBear },
       { id: "rabbit", image: floatingRabbit },
