@@ -11,17 +11,20 @@ const stories = [
   {
     id: "forest-dreams",
     title: { en: "Forest Dreams", zh: "森林之梦" },
-    image: forestDreams
+    image: forestDreams,
+    audioUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" // Free nature sounds
   },
   {
     id: "elephant-adventures", 
     title: { en: "Mr. Elephant & The Fridge", zh: "大象先生与冰箱" },
-    image: elephantFridge
+    image: elephantFridge,
+    audioUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" // Free gentle sounds
   },
   {
     id: "starlight-journey",
     title: { en: "Starlight Journey", zh: "星光之旅" },
-    image: forestDreams // Reusing for demo
+    image: forestDreams, // Reusing for demo
+    audioUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" // Free ambient sounds
   }
 ];
 
@@ -52,6 +55,12 @@ const Index = () => {
     if (!selectedStory) return "";
     const story = stories.find(s => s.id === selectedStory);
     return story ? story.title[language] : "";
+  };
+
+  const getSelectedStoryAudio = () => {
+    if (!selectedStory) return "";
+    const story = stories.find(s => s.id === selectedStory);
+    return story ? story.audioUrl : "";
   };
 
   return (
@@ -109,6 +118,7 @@ const Index = () => {
         onClose={() => setSelectedStory(null)}
         language={language}
         storyTitle={getSelectedStoryTitle()}
+        audioUrl={getSelectedStoryAudio()}
       />
     </div>
   );

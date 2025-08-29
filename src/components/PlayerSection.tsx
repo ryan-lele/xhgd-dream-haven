@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Dialog, DialogContent } from "./ui/dialog";
 import { SleepTimer } from "./SleepTimer";
 import { GuardianMode } from "./GuardianMode";
+import { useAudio } from "../hooks/useAudio";
 import { Play, Pause, SkipBack, SkipForward, Clock, Settings } from "lucide-react";
 
 interface PlayerSectionProps {
@@ -10,12 +11,24 @@ interface PlayerSectionProps {
   onClose: () => void;
   language: 'en' | 'zh';
   storyTitle: string;
+  audioUrl: string;
 }
 
-export const PlayerSection = ({ isOpen, onClose, language, storyTitle }: PlayerSectionProps) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+export const PlayerSection = ({ isOpen, onClose, language, storyTitle, audioUrl }: PlayerSectionProps) => {
   const [showTimer, setShowTimer] = useState(false);
   const [showGuardian, setShowGuardian] = useState(false);
+  
+  const { 
+    isPlaying, 
+    toggle, 
+    skipForward, 
+    skipBackward,
+    currentTime,
+    duration
+  } = useAudio({ 
+    src: audioUrl,
+    onEnded: () => setShowGuardian(true)
+  });
 
   const handleTimerSelect = (minutes: number | 'end') => {
     console.log('Timer set for:', minutes);
@@ -62,6 +75,20 @@ export const PlayerSection = ({ isOpen, onClose, language, storyTitle }: PlayerS
                   </div>
                   
                   <p className="text-primary text-lg">{storyTitle}</p>
+                  
+                  {/* Progress indicator */}
+                  <div className="mt-4 max-w-md mx-auto">
+                    <div className="flex justify-between text-xs text-moonbeam mb-1">
+                      <span>{Math.floor(currentTime / 60)}:{String(Math.floor(currentTime % 60)).padStart(2, '0')}</span>
+                      <span>{Math.floor(duration / 60)}:{String(Math.floor(duration % 60)).padStart(2, '0')}</span>
+                    </div>
+                    <div className="w-full bg-primary/20 rounded-full h-1">
+                      <div 
+                        className="bg-primary h-1 rounded-full transition-all duration-300" 
+                        style={{ width: duration ? `${(currentTime / duration) * 100}%` : '0%' }}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -73,7 +100,7 @@ export const PlayerSection = ({ isOpen, onClose, language, storyTitle }: PlayerS
                   variant="outline"
                   size="lg"
                   className="rounded-full w-16 h-16 border-primary/30 hover:bg-primary hover:text-primary-foreground"
-                  onClick={onClose}
+                  onClick={() => skipBackward(10)}
                 >
                   <SkipBack className="w-6 h-6" />
                 </Button>
@@ -81,7 +108,7 @@ export const PlayerSection = ({ isOpen, onClose, language, storyTitle }: PlayerS
                 <Button
                   size="lg"
                   className="magic-button w-20 h-20 text-2xl"
-                  onClick={() => setIsPlaying(!isPlaying)}
+                  onClick={toggle}
                 >
                   {isPlaying ? <Pause className="w-8 h-8" /> : <Play className="w-8 h-8" />}
                 </Button>
@@ -90,6 +117,7 @@ export const PlayerSection = ({ isOpen, onClose, language, storyTitle }: PlayerS
                   variant="outline"
                   size="lg"
                   className="rounded-full w-16 h-16 border-primary/30 hover:bg-primary hover:text-primary-foreground"
+                  onClick={() => skipForward(10)}
                 >
                   <SkipForward className="w-6 h-6" />
                 </Button>
