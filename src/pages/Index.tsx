@@ -25,7 +25,13 @@ const stories = [
     title: { en: "Starlight Journey", zh: "星光之旅" },
     image: forestDreams, // Reusing for demo
     audioUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" // Free ambient sounds
-  }
+  },
+  {
+    id: "moon-lullaby",
+    title: { en: "Moonship Lullaby", zh: "月亮船的摇篮曲" },
+    image: forestDreams, // 注意：这里需要替换为新图片的变量名
+    audioUrl: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" // 注意：这里需要替换为新音频的URL
+  } 
 ];
 
 const content = {
