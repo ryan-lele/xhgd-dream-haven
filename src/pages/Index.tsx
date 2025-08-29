@@ -75,38 +75,49 @@ const Index = () => {
         </div>
       </header>
 
-      {/* Dream Guardian Bear */}
-      <div className="fixed top-20 right-1/4 z-10 animate-float">
+      {/* Dream Guardian Bear - Peeking from top-right */}
+      <div className="fixed top-[-20px] right-8 z-10 animate-float">
         <img 
           src={dreamGuardianBear} 
           alt="Dream Guardian Bear"
-          className="w-32 h-32 object-contain opacity-90"
+          className="w-24 h-24 object-contain opacity-95"
         />
       </div>
 
       {/* Main Content - The Hut */}
       <main className="px-6 pb-12">
         <div className="max-w-6xl mx-auto">
-          {/* Title */}
-          <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4 animate-slide-up">
-              {content[language].title}
-            </h1>
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-cozy-amber mx-auto rounded-full" />
+          {/* Title with decorative stars */}
+          <div className="text-center mb-12 relative">
+            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-32 bg-gradient-radial from-sleepy-purple/20 via-sleepy-purple/10 to-transparent rounded-full blur-xl" />
+            <div className="relative flex items-center justify-center gap-4">
+              <div className="w-3 h-3 bg-starlight rounded-full animate-gentle-glow opacity-80" />
+              <h1 className="text-4xl md:text-5xl font-bold text-primary animate-slide-up">
+                {content[language].title}
+              </h1>
+              <div className="w-3 h-3 bg-starlight rounded-full animate-gentle-glow opacity-80" />
+            </div>
           </div>
 
-          {/* Story Cards */}
+          {/* Story Cards - Storybook Layout */}
           <div className="relative">
-            <div className="flex space-x-6 overflow-x-auto pb-6 px-4 scrollbar-hide">
-              {stories.map((story) => (
-                <StoryCard
+            <div className="flex items-end justify-center gap-8 overflow-x-auto pb-6 px-4 scrollbar-hide">
+              {stories.map((story, index) => (
+                <div 
                   key={story.id}
-                  id={story.id}
-                  title={story.title}
-                  image={story.image}
-                  language={language}
-                  onClick={handleStorySelect}
-                />
+                  className={`
+                    ${index === 1 ? 'transform scale-105 -translate-y-4' : ''}
+                    transition-all duration-500
+                  `}
+                >
+                  <StoryCard
+                    id={story.id}
+                    title={story.title}
+                    image={story.image}
+                    language={language}
+                    onClick={handleStorySelect}
+                  />
+                </div>
               ))}
             </div>
           </div>
