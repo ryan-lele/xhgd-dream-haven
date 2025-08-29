@@ -6,6 +6,7 @@ import { StoryCard } from "@/components/StoryCard";
 import { PlayerSection } from "@/components/PlayerSection";
 import forestDreams from "../assets/forest-dreams.png";
 import elephantFridge from "../assets/elephant-fridge.png";
+import dreamGuardianBear from "../assets/dream-guardian-bear.png";
 
 const stories = [
   {
@@ -73,6 +74,15 @@ const Index = () => {
           </Button>
         </div>
       </header>
+
+      {/* Dream Guardian Bear */}
+      <div className="fixed top-20 right-1/4 z-10 animate-float">
+        <img 
+          src={dreamGuardianBear} 
+          alt="Dream Guardian Bear"
+          className="w-32 h-32 object-contain opacity-90"
+        />
+      </div>
 
       {/* Main Content - The Hut */}
       <main className="px-6 pb-12">

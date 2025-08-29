@@ -118,12 +118,24 @@ All colors MUST be HSL.
   /* Custom animations */
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-5px); }
   }
 
   @keyframes twinkle {
-    0%, 100% { opacity: 0.3; }
+    0%, 100% { opacity: 0.2; }
     50% { opacity: 1; }
+  }
+
+  @keyframes twinkle-delayed {
+    0%, 100% { opacity: 0.3; }
+    25% { opacity: 0.1; }
+    75% { opacity: 0.8; }
+  }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.1; }
+    33% { opacity: 0.6; }
+    66% { opacity: 0.9; }
   }
 
   @keyframes gentle-glow {
@@ -167,6 +179,23 @@ All colors MUST be HSL.
     animation: twinkle 4s ease-in-out infinite;
   }
 
+  .starry-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(1px 1px at 80px 20px, hsl(var(--cozy-amber)), transparent),
+      radial-gradient(1px 1px at 140px 60px, hsl(var(--starlight)), transparent),
+      radial-gradient(1px 1px at 60px 90px, hsl(var(--moonbeam)), transparent),
+      radial-gradient(1px 1px at 180px 40px, hsl(var(--cozy-amber)), transparent);
+    background-repeat: repeat;
+    background-size: 220px 120px;
+    animation: twinkle-delayed 6s ease-in-out infinite;
+  }
+
   .magic-button {
     @apply rounded-full px-8 py-4 font-medium transition-all duration-300;
     background: var(--gradient-moon);
@@ -188,8 +217,8 @@ All colors MUST be HSL.
   }
 
   .story-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-soft), var(--glow-gentle);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--shadow-soft), 0 0 30px hsl(var(--cozy-amber) / 0.4);
   }
 
   .timer-option {

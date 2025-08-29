@@ -75,7 +75,7 @@ export default {
 				},
 				float: {
 					'0%, 100%': { transform: 'translateY(0px)' },
-					'50%': { transform: 'translateY(-10px)' }
+					'50%': { transform: 'translateY(-5px)' }
 				},
 				twinkle: {
 					'0%, 100%': { opacity: '0.3' },
@@ -93,10 +93,10 @@ export default {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				float: 'float 3s ease-in-out infinite',
+				float: 'float 4s ease-in-out infinite',
 				twinkle: 'twinkle 4s ease-in-out infinite',
 				'gentle-glow': 'gentle-glow 2s ease-in-out infinite',
-				'slide-up': 'slide-up 0.5s ease-out'
+				'slide-up': 'slide-up 0.6s ease-out'
 			}
 		}
 	},
