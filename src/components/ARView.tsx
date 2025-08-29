@@ -27,15 +27,15 @@ const ARView = ({ isOpen, onClose }: ARViewProps) => {
         dangerouslySetInnerHTML={{
           __html: `
             <a-scene
-              mindar-image="imageTargetSrc: /assets/targets/xhgd-characters.mind; autoStart: true;"
+              mindar-image="imageTargetSrc: https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/band.mind; autoStart: true;"
               color-space="sRGB"
               renderer="colorManagement: true, physicallyCorrectLights"
               vr-mode-ui="enabled: false"
               device-orientation-permission-ui="enabled: false"
             >
               <a-assets>
-                <a-asset-item id="guardianBearModel" src="/assets/models/guardian-bear.gltf"></a-asset-item>
-                <a-asset-item id="forestFoxModel" src="/assets/models/forest-fox.gltf"></a-asset-item>
+                <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
+                <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
               </a-assets>
 
               <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -43,9 +43,9 @@ const ARView = ({ isOpen, onClose }: ARViewProps) => {
               <a-entity mindar-image-target="targetIndex: 0">
                 <a-gltf-model 
                   rotation="0 0 0" 
-                  position="0 0 0" 
-                  scale="0.1 0.1 0.1" 
-                  src="#guardianBearModel" 
+                  position="0 -0.25 0" 
+                  scale="0.05 0.05 0.05" 
+                  src="#raccoonModel" 
                   animation-mixer>
                 </a-gltf-model>
               </a-entity>
@@ -53,9 +53,9 @@ const ARView = ({ isOpen, onClose }: ARViewProps) => {
               <a-entity mindar-image-target="targetIndex: 1">
                 <a-gltf-model 
                   rotation="0 0 0" 
-                  position="0 0 0" 
-                  scale="0.1 0.1 0.1" 
-                  src="#forestFoxModel" 
+                  position="0 -0.25 0" 
+                  scale="0.05 0.05 0.05" 
+                  src="#bearModel" 
                   animation-mixer>
                 </a-gltf-model>
               </a-entity>
