@@ -58,36 +58,26 @@ export const GeminiImageTest: React.FC = () => {
     try {
       const imageDataUrl = await convertImageToBase64(sourceImage);
       
-      // 使用现有的API调用格式
-      const requestBody = {
-        model: "gemini-2.5-flash-image",
-        stream: false,
-        messages: [
-          {
-            role: "user",
-            content: [
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=AIzaSyATcGzhjgjPUbZ3GW11Lq-Fpy78EF5BCNg`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [
               {
-                type: "text",
                 text: prompt
               },
               {
-                type: "image_url",
-                image_url: {
-                  url: imageDataUrl
+                inline_data: {
+                  mime_type: sourceImage.type,
+                  data: imageDataUrl.split(',')[1] // 移除data:image/type;base64,前缀
                 }
               }
             ]
-          }
-        ]
-      };
-
-      const response = await fetch('https://api.apicore.ai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer AIzaSyATcGzhjgjPUbZ3GW11Lq-Fpy78EF5BCNg'
-        },
-        body: JSON.stringify(requestBody)
+          }]
+        })
       });
 
       if (!response.ok) {
@@ -96,7 +86,7 @@ export const GeminiImageTest: React.FC = () => {
       }
 
       const data = await response.json();
-      const content = data.choices?.[0]?.message?.content;
+      const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
       
       if (typeof content === 'string' && content.includes('http')) {
         // 提取图片URL
@@ -108,7 +98,7 @@ export const GeminiImageTest: React.FC = () => {
           throw new Error('未能从响应中提取图片URL');
         }
       } else {
-        throw new Error(`API未返回有效的图片URL。响应: ${JSON.stringify(data)}`);
+        throw new Error(`Gemini API未返回有效的图片URL。响应: ${JSON.stringify(data)}`);
       }
     } catch (error) {
       const errorMsg = error instanceof Error ? error.message : '未知错误';
