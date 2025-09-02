@@ -5,13 +5,21 @@
 import { GoogleGenAI } from "@google/genai";
 import type { GenerateContentResponse } from "@google/genai";
 
-const API_KEY = process.env.API_KEY;
+// Get API key from localStorage or show error to user
+const getApiKey = (): string => {
+  const stored = localStorage.getItem('gemini_api_key');
+  if (!stored) {
+    throw new Error("Please set your Google Gemini API key first. Go to Settings to add it.");
+  }
+  return stored;
+};
 
-if (!API_KEY) {
-  throw new Error("API_KEY environment variable is not set");
-}
+const createAI = () => {
+  const apiKey = getApiKey();
+  return new GoogleGenAI({ apiKey });
+};
 
-const ai = new GoogleGenAI({ apiKey: API_KEY });
+// AI instance will be created when needed
 
 
 // --- Helper Functions ---
@@ -65,6 +73,7 @@ async function callGeminiWithRetry(imagePart: object, textPart: object): Promise
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
+            const ai = createAI();
             return await ai.models.generateContent({
                 model: 'gemini-2.5-flash-image-preview',
                 contents: { parts: [imagePart, textPart] },

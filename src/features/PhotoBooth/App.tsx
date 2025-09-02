@@ -8,6 +8,7 @@ import { generateDecadeImage } from './services/geminiService';
 import PolaroidCard from './components/PolaroidCard';
 import { createAlbumPage } from './lib/albumUtils';
 import Footer from './components/Footer';
+import ApiKeySetup from './components/ApiKeySetup';
 
 const DECADES = ['1950s', '1960s', '1970s', '1980s', '1990s', '2000s'];
 
@@ -63,6 +64,15 @@ function App() {
     const [appState, setAppState] = useState<'idle' | 'image-uploaded' | 'generating' | 'results-shown'>('idle');
     const dragAreaRef = useRef<HTMLDivElement>(null);
     const isMobile = useMediaQuery('(max-width: 768px)');
+    const [showApiKeySetup, setShowApiKeySetup] = useState(false);
+
+    // Check for API key on mount
+    useEffect(() => {
+        const apiKey = localStorage.getItem('gemini_api_key');
+        if (!apiKey) {
+            setShowApiKeySetup(true);
+        }
+    }, []);
 
 
     const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
@@ -80,6 +90,13 @@ function App() {
 
     const handleGenerateClick = async () => {
         if (!uploadedImage) return;
+
+        // Check API key before starting
+        const apiKey = localStorage.getItem('gemini_api_key');
+        if (!apiKey) {
+            setShowApiKeySetup(true);
+            return;
+        }
 
         setIsLoading(true);
         setAppState('generating');
@@ -349,6 +366,13 @@ function App() {
                 )}
             </div>
             <Footer />
+            
+            {/* API Key Setup Modal */}
+            {showApiKeySetup && (
+                <ApiKeySetup
+                    onApiKeySet={() => setShowApiKeySetup(false)}
+                />
+            )}
         </main>
     );
 }
