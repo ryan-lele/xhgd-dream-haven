@@ -4,8 +4,8 @@
  * 使用直接提供的测试 API 密钥进行基础通讯测试。
  */
 
-// 使用提供的测试 API 密钥
-const API_KEY = "sk-YA6vKC88GC3VF5ktV89tPfAHyM7QwOUcKp3g1AyaibjxXiuw";
+// 使用 Google AI Studio API 密钥
+const API_KEY = "AIzaSyATcGzhjgjPUbZ3GW11Lq-Fpy78EF5BCNg";
 const API_BASE = "https://api.apicore.ai/v1/chat/completions";
 
 /**

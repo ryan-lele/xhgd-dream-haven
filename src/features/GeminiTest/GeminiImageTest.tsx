@@ -85,7 +85,7 @@ export const GeminiImageTest: React.FC = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer sk-YA6vKC88GC3VF5ktV89tPfAHyM7QwOUcKp3g1AyaibjxXiuw'
+          'Authorization': 'Bearer AIzaSyATcGzhjgjPUbZ3GW11Lq-Fpy78EF5BCNg'
         },
         body: JSON.stringify(requestBody)
       });

@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// Use provided test API directly
-const API_KEY = "sk-YA6vKC88GC3VF5ktV89tPfAHyM7QwOUcKp3g1AyaibjxXiuw";
+// Use Google AI Studio API key
+const API_KEY = "AIzaSyATcGzhjgjPUbZ3GW11Lq-Fpy78EF5BCNg";
 const API_BASE = "https://api.apicore.ai/v1/chat/completions";
 
 // --- Helper Functions ---
