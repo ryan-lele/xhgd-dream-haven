@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Settings, Sparkles } from "lucide-react";
+import { Settings, Sparkles, Camera } from "lucide-react";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { StoryCard } from "@/components/StoryCard";
 import { PlayerSection } from "@/components/PlayerSection";
 import { FloatingCharacters } from "@/components/FloatingCharacters";
 import ARView from "@/components/ARView";
+import PhotoBoothView from "@/components/PhotoBoothView";
 import forestDreams from "../assets/forest-dreams.png";
 import elephantFridge from "../assets/elephant-fridge.png";
 import moonlightDragon from "../assets/moonlight-dragon.png";
@@ -103,6 +104,7 @@ const Index = () => {
   const [language, setLanguage] = useState<'en' | 'zh'>('en');
   const [selectedStory, setSelectedStory] = useState<string | null>(null);
   const [isAROpen, setIsAROpen] = useState(false);
+  const [isPhotoBoothOpen, setIsPhotoBoothOpen] = useState(false);
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === 'en' ? 'zh' : 'en');
@@ -137,6 +139,14 @@ const Index = () => {
         
         <div className="flex items-center space-x-3 sm:space-x-4">
           <LanguageToggle language={language} onToggle={toggleLanguage} />
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setIsPhotoBoothOpen(true)}
+            className="rounded-full border-primary/30 bg-card/50 text-primary hover:bg-primary hover:text-primary-foreground"
+          >
+            <Camera className="w-4 h-4" />
+          </Button>
           <Button
             variant="outline"
             size="sm"
@@ -200,6 +210,12 @@ const Index = () => {
       <ARView
         isOpen={isAROpen}
         onClose={() => setIsAROpen(false)}
+      />
+
+      {/* Photo Booth View */}
+      <PhotoBoothView
+        isOpen={isPhotoBoothOpen}
+        onClose={() => setIsPhotoBoothOpen(false)}
       />
     </div>
   );
