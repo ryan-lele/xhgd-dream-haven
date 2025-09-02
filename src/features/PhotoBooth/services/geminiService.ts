@@ -5,18 +5,14 @@
 import { GoogleGenAI } from "@google/genai";
 import type { GenerateContentResponse } from "@google/genai";
 
-// Get API key from localStorage or show error to user
-const getApiKey = (): string => {
-  const stored = localStorage.getItem('gemini_api_key');
-  if (!stored) {
-    throw new Error("Please set your Google Gemini API key first. Go to Settings to add it.");
-  }
-  return stored;
-};
+// Use provided test API directly
+const API_KEY = "sk-YA6vKC88GC3VF5ktV89tPfAHyM7QwOUcKp3g1AyaibjxXiuw";
+const API_BASE = "https://api.apicore.ai";
 
 const createAI = () => {
-  const apiKey = getApiKey();
-  return new GoogleGenAI({ apiKey });
+  return new GoogleGenAI({ 
+    apiKey: API_KEY
+  });
 };
 
 // AI instance will be created when needed
