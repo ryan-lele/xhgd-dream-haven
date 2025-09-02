@@ -9,6 +9,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import ARView from "@/components/ARView";
 import PhotoBoothView from "@/features/PhotoBooth/App";
 import { GeminiAPITest } from "@/features/GeminiTest/GeminiAPITest";
+import { GeminiImageTest } from "@/features/GeminiTest/GeminiImageTest";
 import forestDreams from "../assets/forest-dreams.png";
 import elephantFridge from "../assets/elephant-fridge.png";
 import moonlightDragon from "../assets/moonlight-dragon.png";
@@ -205,8 +206,9 @@ const Index = () => {
           </div>
 
           {/* Gemini API 测试组件 */}
-          <div className="mt-12">
+          <div className="mt-12 space-y-6">
             <GeminiAPITest />
+            <GeminiImageTest />
           </div>
         </div>
       </main>
