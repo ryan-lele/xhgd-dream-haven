@@ -5,8 +5,8 @@ import { LanguageToggle } from "@/components/LanguageToggle";
 import { StoryCard } from "@/components/StoryCard";
 import { PlayerSection } from "@/components/PlayerSection";
 import { FloatingCharacters } from "@/components/FloatingCharacters";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import ARView from "@/components/ARView";
-import PhotoBoothView from "@/components/PhotoBoothView";
 import forestDreams from "../assets/forest-dreams.png";
 import elephantFridge from "../assets/elephant-fridge.png";
 import moonlightDragon from "../assets/moonlight-dragon.png";
@@ -104,7 +104,6 @@ const Index = () => {
   const [language, setLanguage] = useState<'en' | 'zh'>('en');
   const [selectedStory, setSelectedStory] = useState<string | null>(null);
   const [isAROpen, setIsAROpen] = useState(false);
-  const [isPhotoBoothOpen, setIsPhotoBoothOpen] = useState(false);
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === 'en' ? 'zh' : 'en');
@@ -139,14 +138,21 @@ const Index = () => {
         
         <div className="flex items-center space-x-3 sm:space-x-4">
           <LanguageToggle language={language} onToggle={toggleLanguage} />
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setIsPhotoBoothOpen(true)}
-            className="rounded-full border-primary/30 bg-card/50 text-primary hover:bg-primary hover:text-primary-foreground"
-          >
-            <Camera className="w-4 h-4" />
-          </Button>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => window.open('https://ai.studio/apps/bundled/past_forward', '_blank')}
+                className="rounded-full border-primary/30 bg-card/50 text-primary hover:bg-primary hover:text-primary-foreground"
+              >
+                <Camera className="w-4 h-4" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{language === 'zh' ? '进入魔法时光照相馆 (将在新窗口打开)' : 'Enter Magic Photo Booth (Opens in new tab)'}</p>
+            </TooltipContent>
+          </Tooltip>
           <Button
             variant="outline"
             size="sm"
@@ -210,12 +216,6 @@ const Index = () => {
       <ARView
         isOpen={isAROpen}
         onClose={() => setIsAROpen(false)}
-      />
-
-      {/* Photo Booth View */}
-      <PhotoBoothView
-        isOpen={isPhotoBoothOpen}
-        onClose={() => setIsPhotoBoothOpen(false)}
       />
     </div>
   );
