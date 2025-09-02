@@ -58,7 +58,7 @@ export const GeminiImageTest: React.FC = () => {
     try {
       const imageDataUrl = await convertImageToBase64(sourceImage);
       
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro-vision:generateContent?key=AIzaSyATcGzhjgjPUbZ3GW11Lq-Fpy78EF5BCNg`, {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image-preview:generateContent?key=AIzaSyATcGzhjgjPUbZ3GW11Lq-Fpy78EF5BCNg`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
