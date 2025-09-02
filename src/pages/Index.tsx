@@ -8,6 +8,7 @@ import { FloatingCharacters } from "@/components/FloatingCharacters";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import ARView from "@/components/ARView";
 import PhotoBoothView from "@/features/PhotoBooth/App";
+import { GeminiAPITest } from "@/features/GeminiTest/GeminiAPITest";
 import forestDreams from "../assets/forest-dreams.png";
 import elephantFridge from "../assets/elephant-fridge.png";
 import moonlightDragon from "../assets/moonlight-dragon.png";
@@ -201,6 +202,11 @@ const Index = () => {
                 onClick={handleStorySelect}
               />
             ))}
+          </div>
+
+          {/* Gemini API 测试组件 */}
+          <div className="mt-12">
+            <GeminiAPITest />
           </div>
         </div>
       </main>
